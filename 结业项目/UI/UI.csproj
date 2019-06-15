@@ -247,6 +247,24 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{9430f353-4280-4e2c-b8a6-a66d9816e920}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBll\IBll.csproj">
+      <Project>{81de6d79-1239-4c8e-8179-c004957fdbb8}</Project>
+      <Name>IBll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IOC\IOC.csproj">
+      <Project>{6c0ca3c9-de0d-414b-9d8c-fb80d49a1b23}</Project>
+      <Name>IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{1c4ad98d-ce19-4f9c-8651-f6eb25f74a13}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

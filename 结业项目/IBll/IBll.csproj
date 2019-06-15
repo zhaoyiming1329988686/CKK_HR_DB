@@ -40,7 +40,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IbonusBll.cs" />
+    <Compile Include="Iconfig_file_first_kindBll.cs" />
+    <Compile Include="Iconfig_file_second_kindBll.cs" />
+    <Compile Include="Iconfig_file_third_kindBll.cs" />
+    <Compile Include="Iconfig_majorBll.cs" />
+    <Compile Include="Iconfig_major_kindBll.cs" />
+    <Compile Include="Iconfig_primary_keyBll.cs" />
+    <Compile Include="Iconfig_public_charBll.cs" />
+    <Compile Include="Iconfig_question_first_kindBll.cs" />
+    <Compile Include="Iconfig_question_second_kindBll.cs" />
+    <Compile Include="Iengage_answerBll.cs" />
+    <Compile Include="Iengage_answer_detailsBll.cs" />
+    <Compile Include="Iengage_examBll.cs" />
+    <Compile Include="Iengage_exam_detailsBll.cs" />
+    <Compile Include="Iengage_interviewBll.cs" />
+    <Compile Include="Iengage_major_releaseBll.cs" />
+    <Compile Include="Iengage_resumeBll.cs" />
+    <Compile Include="Iengage_subjectsBll.cs" />
+    <Compile Include="Ihuman_fileBll.cs" />
+    <Compile Include="Ihuman_file_digBll.cs" />
+    <Compile Include="Imajor_changeBll.cs" />
+    <Compile Include="Isalary_grantBll.cs" />
+    <Compile Include="Isalary_grant_detailsBll.cs" />
+    <Compile Include="Isalary_standardBll.cs" />
+    <Compile Include="Isalary_standard_detailsBll.cs" />
+    <Compile Include="ItrainingBll.cs" />
+    <Compile Include="IUsersBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{1c4ad98d-ce19-4f9c-8651-f6eb25f74a13}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

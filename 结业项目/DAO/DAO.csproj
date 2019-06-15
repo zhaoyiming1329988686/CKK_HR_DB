@@ -30,8 +30,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,7 +51,88 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bonusDao.cs" />
+    <Compile Include="config_file_first_kindDao.cs" />
+    <Compile Include="config_file_second_kindDao.cs" />
+    <Compile Include="config_file_third_kindDao.cs" />
+    <Compile Include="config_majorDao.cs" />
+    <Compile Include="config_major_kindDao.cs" />
+    <Compile Include="config_primary_keyDao.cs" />
+    <Compile Include="config_public_charDao.cs" />
+    <Compile Include="config_question_first_kindDao.cs" />
+    <Compile Include="config_question_second_kindDao.cs" />
+    <Compile Include="DaoBase.cs" />
+    <Compile Include="engage_answerDao.cs" />
+    <Compile Include="engage_answer_detailsDao.cs" />
+    <Compile Include="engage_examDao.cs" />
+    <Compile Include="engage_exam_detailsDao.cs" />
+    <Compile Include="engage_interviewDao.cs" />
+    <Compile Include="engage_major_releaseDao.cs" />
+    <Compile Include="engage_resumeDao.cs" />
+    <Compile Include="engage_subjectsDao.cs" />
+    <Compile Include="human_fileDao.cs" />
+    <Compile Include="human_file_digDao.cs" />
+    <Compile Include="major_changeDao.cs" />
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="salary_grantDao.cs" />
+    <Compile Include="salary_grant_detailsDao.cs" />
+    <Compile Include="salary_standardDao.cs" />
+    <Compile Include="salary_standard_detailsDao.cs" />
+    <Compile Include="trainingDao.cs" />
+    <Compile Include="UsersDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IDao\IDao.csproj">
+      <Project>{35585a32-cced-42ba-b56c-ab58ebcee424}</Project>
+      <Name>IDao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{1c4ad98d-ce19-4f9c-8651-f6eb25f74a13}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -40,7 +40,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IbonusDao.cs" />
+    <Compile Include="Iconfig_file_first_kindDao.cs" />
+    <Compile Include="Iconfig_file_second_kindDao.cs" />
+    <Compile Include="Iconfig_file_third_kindDao.cs" />
+    <Compile Include="Iconfig_majorDao.cs" />
+    <Compile Include="Iconfig_major_kindDao.cs" />
+    <Compile Include="Iconfig_primary_keyDao.cs" />
+    <Compile Include="Iconfig_public_charDao.cs" />
+    <Compile Include="Iconfig_question_first_kindDao.cs" />
+    <Compile Include="Iconfig_question_second_kindDao.cs" />
+    <Compile Include="Iengage_answerDao.cs" />
+    <Compile Include="Iengage_answer_detailsDao.cs" />
+    <Compile Include="Iengage_examDao.cs" />
+    <Compile Include="Iengage_exam_detailsDao.cs" />
+    <Compile Include="Iengage_interviewDao.cs" />
+    <Compile Include="Iengage_major_releaseDao.cs" />
+    <Compile Include="Iengage_resumeDao.cs" />
+    <Compile Include="Iengage_subjectsDao.cs" />
+    <Compile Include="Ihuman_fileDao.cs" />
+    <Compile Include="Ihuman_file_digDao.cs" />
+    <Compile Include="Imajor_changeDao.cs" />
+    <Compile Include="Isalary_grantDao.cs" />
+    <Compile Include="Isalary_grant_detailsDao.cs" />
+    <Compile Include="Isalary_standardDao.cs" />
+    <Compile Include="Isalary_standard_detailsDao.cs" />
+    <Compile Include="ItrainingDao.cs" />
+    <Compile Include="IUsersDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{1c4ad98d-ce19-4f9c-8651-f6eb25f74a13}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

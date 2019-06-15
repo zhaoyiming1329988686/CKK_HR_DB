@@ -30,7 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\JSP-ajax(5)\Dome7-小项目（小总结）\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -38,10 +43,45 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions">
+      <HintPath>..\..\..\..\JSP-ajax(5)\汽车商务项目\XM\XM\bin\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration">
+      <HintPath>..\..\..\..\JSP-ajax(5)\汽车商务项目\XM\XM\bin\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container">
+      <HintPath>..\..\..\..\JSP-ajax(5)\汽车商务项目\XM\XM\bin\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception">
+      <HintPath>..\..\..\..\JSP-ajax(5)\汽车商务项目\XM\XM\bin\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration">
+      <HintPath>..\..\..\..\JSP-ajax(5)\汽车商务项目\XM\XM\bin\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention">
+      <HintPath>..\..\..\..\JSP-ajax(5)\汽车商务项目\XM\XM\bin\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation">
+      <HintPath>..\..\..\..\JSP-ajax(5)\汽车商务项目\XM\XM\bin\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IocCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{bb3d04f0-f0f6-411b-b093-5874f6d16bc1}</Project>
+      <Name>DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBll\IBll.csproj">
+      <Project>{81de6d79-1239-4c8e-8179-c004957fdbb8}</Project>
+      <Name>IBll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDao\IDao.csproj">
+      <Project>{35585a32-cced-42ba-b56c-ab58ebcee424}</Project>
+      <Name>IDao</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
