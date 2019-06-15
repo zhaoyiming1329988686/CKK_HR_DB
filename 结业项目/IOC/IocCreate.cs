@@ -22,7 +22,7 @@ namespace IOC
             UnityContainer ioc = new UnityContainer();
             //把Untity文件转换成对象
             ExeConfigurationFileMap exf = new ExeConfigurationFileMap();
-            exf.ExeConfigFilename = @"E:\Y2\riview\结业项目\HR_DB\UI\Unity.config";
+            exf.ExeConfigFilename = @"E:\Y2\riview\结业项目\CKK_HR_DB\结业项目\UI\Unity.config";
             //把Untity文件文件对象转成了配置对象
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(exf, ConfigurationUserLevel.None);
             //读取配置对象中的Unity节点
