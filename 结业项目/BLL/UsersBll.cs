@@ -14,13 +14,24 @@ namespace BLL
 {
     public class UsersBll:IUsersBll
     {
-        IUsersDao oo = IocCreate.CreateDao<UsersDao>("Usersjiaobaba", "Usersbaba");
+        IUsersDao uu = IocCreate.CreateDao<UsersDao>("Usersjiaobaba", "Usersbaba");
 
         public List<users> user()
         {
-            return oo.user();
+            return uu.user();
         }
 
-  
+        /// <summary>
+        /// 1.登陆
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public List<users> Login(Expression<Func<users, bool>> where)
+        {
+            return uu.Login(where);
+        }
+
+
+
     }
 }

@@ -18,7 +18,6 @@ namespace DAO
         HR_DBEntities mvc = CreateDBContent();
         public static HR_DBEntities CreateDBContent()
         {
-
             HR_DBEntities at = CallContext.GetData("s") as HR_DBEntities;
             if (at == null)
             {
@@ -26,7 +25,6 @@ namespace DAO
                 CallContext.SetData("s", at);
             }
             return at;
-
         }
 
         /// <summary>
@@ -35,7 +33,6 @@ namespace DAO
         /// <returns></returns>
         public List<T> SelectAll()
         {
-
             return mvc.Set<T>().Select(e => e).ToList();
         }
 
@@ -46,8 +43,6 @@ namespace DAO
         /// <returns></returns>
         public List<T> SelectWhere(Expression<Func<T, bool>> where)
         {
-
-
             return mvc.Set<T>().Where(where)
                   .Select(e => e)
                   .ToList();
@@ -66,7 +61,6 @@ namespace DAO
         /// <returns></returns>
         public List<T> FenYe<K>(Expression<Func<T, K>> order, Expression<Func<T, bool>> where, out int rows, int currentPage, int pageSize)
         {
-
             var data = mvc.Set<T>().OrderBy(order).Where(where);
             rows = data.Count();
             return data.Skip((currentPage - 1) * pageSize)
@@ -94,7 +88,6 @@ namespace DAO
         /// <returns></returns>
         public int Update(T t)
         {
-
             mvc.Entry<T>(t).State = System.Data.Entity.EntityState.Modified;
             return mvc.SaveChanges();
         }

@@ -4,15 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using System.Linq.Expressions;
+
 namespace IBll
 {
     public interface IUsersBll
     {
+
+        List<users> user();
         /// <summary>
         /// 1.登陆判断
         /// </summary>
-        /// <param name="uu"></param>
+        /// <param name="where"></param>
         /// <returns></returns>
-        List<users> user();
+        List<users> Login(Expression<Func<users, bool>> where);
     }
 }
