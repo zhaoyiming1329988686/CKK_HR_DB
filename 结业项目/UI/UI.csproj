@@ -410,7 +410,7 @@
     <Content Include="Views\Login\top.cshtml" />
     <Content Include="Views\Login\main.cshtml" />
     <Content Include="Views\Login\haha.cshtml" />
-    <Content Include="Views\position_register\zhiyefabuguanli.cshtml" />
+    <Content Include="Views\position_register\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
