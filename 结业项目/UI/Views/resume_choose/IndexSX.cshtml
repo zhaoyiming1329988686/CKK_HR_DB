@@ -1,0 +1,139 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>简历筛选</title>
+    <link href="~/Scripts/css/table.css" rel="stylesheet" />
+    <link href="~/Scripts/css/cwcalendar.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="../../Scripts/vue.js"></script>
+    <script src="~/Scripts/javascript/comm/comm.js"></script>
+    <script src="~/Scripts/javascript/comm/list.js"></script>
+    <script src="~/Scripts/javascript/calendar-ch.js"></script>
+    <script src="~/Scripts/javascript/locate.js"></script>
+    <script src="~/Scripts/javascript/select.js"></script>
+    <script src="~/Scripts/javascript/comm/time.js"></script>
+    <script type="text/javascript">
+	function search() {
+
+				if(document.getElementById("majorKindId").value=="0"){
+				document.getElementById("majorKindId").value=null;
+				}
+		document.resumeChooseForm.submit();
+	}
+
+
+	$(function () {
+
+	    //职位名称详细显示（点击职位分类）
+	    $(document).on("change", "#majorKindId", function () {
+
+	        $("#majorId option").remove();
+	        $.ajax({
+
+	            url: "/resume_choose/chaxunFL",
+	            type: "post",
+	            data: "&majorKindId=" + $("#majorKindId").val(),
+	            success: function (msg) {
+
+	                var data = eval("(" + msg + ")");
+	                for (var i = 0; i < data.length; i++) {
+	                    $("#majorId").append("<option value='" + data[i]["major_id"] + "'>" + data[i]["major_name"] + "</option>");
+	                }
+	            }
+
+	        });
+	    })
+
+	});
+
+
+    </script>
+</head>
+<body>
+    <form id="recruitAction!findEngageResume?a=list" name="resumeChooseForm" action="SXlieBiao" method="post">
+        <input type="hidden" name="engageResume.humanMajorKindName"
+               id="majorKindName" />
+        <input type="hidden" name="engageResume.humanMajorName"
+               id="majorName" />
+        <input type="hidden" name="engageResume.checkStatus"
+               value="false" />
+
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--招聘管理--简历管理--简历筛选 </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+
+                    <input type="button" value="开始" class="BUTTON_STYLE1"
+                           onclick=search();>
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+
+            <tr>
+                <td class="TD_STYLE1" width="30%">
+                    请选择职位分类
+                </td>
+                <td class="TD_STYLE2" width="30%">
+                    <select name="engageResume.humanMajorKindId" multiple="multiple" style="width: 290;height: 100"
+                            id="majorKindId" class="SELECT_STYLE2">
+                        @foreach (config_major_kind item in ViewBag.ZhiweiFL)
+                        {
+                            <option value=@item.major_kind_id>@item.major_kind_name</option>
+                        }
+                    </select>
+                    <select name="engageResume.humanMajorId" multiple="multiple" style="width: 290;height: 100"
+                            id="majorId" size="5"
+                            class="SELECT_STYLE2">
+                        <option>
+                            --请选择--
+                        </option>
+                    </select>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td class="TD_STYLE1" width="30%">
+                    请输入关键字
+                </td>
+                <td width="84%">
+                    <input type="text" name="utilBean.primarKey" value=""
+                           class="INPUT_STYLE2" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="TD_STYLE1" width="30%">
+                    请输入登记时间
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    <input type="hidden" name="utilBean.datePropertyName" value="registTime" />
+
+                    <input type="text" name="utilBean.startDate" onclick="aa('utilBean.startDate')"
+                           style="width: 14%" class="INPUT_STYLE2">
+                    至
+                    <input type="text" name="utilBean.endDate"
+                           style="width: 14%" class="INPUT_STYLE2" onclick="aa('utilBean.endDate')">
+                    （YYYY-MM-DD）
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+</body>
+</html>

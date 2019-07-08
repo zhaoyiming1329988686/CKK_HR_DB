@@ -30,6 +30,5 @@ namespace DAO
         {
             return SelectWhere(where);
         }
-
     }
 }

@@ -11,12 +11,18 @@ namespace IBll
     public interface IUsersBll
     {
 
+        /// <summary>
+        /// 2.查询
+        /// </summary>
+        /// <returns></returns>
         List<users> user();
+
         /// <summary>
         /// 1.登陆判断
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
         List<users> Login(Expression<Func<users, bool>> where);
+
     }
 }

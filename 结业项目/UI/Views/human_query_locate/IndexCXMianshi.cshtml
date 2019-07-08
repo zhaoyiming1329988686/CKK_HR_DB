@@ -1,0 +1,141 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>人力资源数据显示</title>
+    <link href="~/Scripts/css/table.css" rel="stylesheet" />
+    <script src="~/Scripts/javascript/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        var currentPage = 1;//当前页
+        $(function () {
+
+            haha();
+        })
+        function haha() {
+            $.ajax({
+                url: "/human_query_locate/IndexCXMianshi2",
+                type: "get",
+                data: "&currentPage=" + currentPage,
+                success: function (msg) {
+                    var data = eval("(" + msg + ")");
+                    var dt = data["list"];
+                    $("#table tr:gt(0)").remove();
+                    for (var i = 0; i < dt.length; i++) {
+                        var $tr = $("<tr></tr>");
+                        var $td = $("<td class='TD_STYLE2'>" + dt[i]["huf_id"] + "</td>");
+                        var $td1 = $('<td class="TD_STYLE2"><a href="/human_query_locate/MianshiChaxun?huf_id=' + dt[i]["huf_id"] + ' ">' + dt[i]["human_id"] + '</a></td>');
+                        var $td2 = $("<td class='TD_STYLE2'>" + dt[i]["human_name"] + "</td>");
+                        var $td3 = $("<td class='TD_STYLE2'>" + dt[i]["human_sex"] + "</td>");
+                        var $td4 = $("<td class='TD_STYLE2'>" + dt[i]["first_kind_name"] + "</td>");
+                        var $td5 = $("<td class='TD_STYLE2'>" + dt[i]["second_kind_name"] + "</td>");
+                        var $td6 = $("<td class='TD_STYLE2'>" + dt[i]["third_kind_name"] + "</td>");
+                        var $td7 = $("<td class='TD_STYLE2'>" + dt[i]["human_major_kind_name"] + "</td>");
+                        var $td8 = $("<td class='TD_STYLE2'>" + dt[i]["hunma_major_name"] + "</td>");
+                      
+                        $tr.append($td1, $td2, $td3, $td4, $td5, $td6, $td7, $td8);
+                        $("#table").append($tr);
+                    }
+
+                    rows = data["rows"];//总记录数
+                    pages = data["pages"];//总页数
+                    pageSize = data["pageSize"];//每页显示多少条
+                    $("#currentPage").text("" + currentPage + "");
+                    $("#pages").text("" + pages + "");
+                }
+            });
+        }
+
+        //翻页
+        $(function () {
+
+            $("#first").click(function () {
+                currentPage = 1;
+                haha();
+            })
+            $("#last").click(function () {
+                currentPage = pages;
+                haha();
+            })
+            $("prev").click(function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                    haha();
+                } else {
+                    alert("没有上一页");
+                    return false;
+                }
+
+
+            })
+
+        });
+    </script>
+</head>
+<body>
+    <form action="" method="post">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案查询 </font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    符合条件的人力资源档案总数：14例
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=5 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1" id="table">
+            <tr class="TR_STYLE1">
+                <td width="16%" class="TD_STYLE1">
+                    档案编号
+                </td>
+                <td width="13%" class="TD_STYLE1">
+                    姓名
+                </td>
+                <td width="8%" class="TD_STYLE1">
+                    性别
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    I级机构
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    II级机构
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    III级机构
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    职位分类
+                </td>
+                <td width="7%" class="TD_STYLE1">
+                    职位名称
+                </td>
+            </tr>
+
+
+        </table>
+        <p style="text-align: center;">
+            @*<a href="query_list.html" style="color:black;">首页</a>
+            <a href="query_list.html" style="color:black;">上一页</a>
+            <font color="red">1</font>
+            <a href="query_list.html" style="color:black;">尾页</a>*@
+
+
+            <input type="text" id="first" value="首页"  style="border:none;background:#FFFFCC" readonly="readonly"/>
+            <input type="text" id="prev" value="上一页"  style="border:none;background:#FFFFCC" readonly="readonly"/>
+            <font style="color:red;" id="currentPage"></font>
+            <a href="query_list.html" style="color:black;" id="pages"></a>&nbsp;&nbsp;&nbsp;
+            <input type="text" id="last" value="尾页"  style="border:none;background:#FFFFCC" readonly="readonly"/>
+        </p>
+    </form>
+</body>
+</html>

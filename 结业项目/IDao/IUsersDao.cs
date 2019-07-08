@@ -10,7 +10,10 @@ namespace IDao
 {
     public interface IUsersDao
     {
-
+        /// <summary>
+        /// 2.查询
+        /// </summary>
+        /// <returns></returns>
         List<users> user();
 
         /// <summary>
@@ -18,7 +21,7 @@ namespace IDao
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        List<users> Login(Expression<Func<users, bool>> where); 
+        List<users> Login(Expression<Func<users, bool>> where);
 
     }
 }

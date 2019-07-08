@@ -1,0 +1,433 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>人力资源变更条件显示</title>
+    <link href="~/Scripts/css/table.css" rel="stylesheet" />
+    <link href="~/Scripts/css/cwcalendar.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/javascript/comm/comm.js"></script>
+    <script src="~/Scripts/javascript/comm/list.js"></script>
+    <script src="~/Scripts/javascript/calendar-ch.js"></script>
+    <script src="~/Scripts/javascript/locate.js"></script>
+    <script src="~/Scripts/javascript/select.js"></script>
+    <script src="~/Scripts/javascript/time.js"></script>
+    <script src="~/Scripts/javascript/jquery.messager.js"></script>
+    <script src="~/Scripts/javascript/human_register.js"></script>
+    <script src="~/Scripts/javascript/human_input_check.js"></script>
+    <script src="~/Scripts/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Scripts/javascript/winopen/winopenm.js"></script>
+    <script src="~/Scripts/javascript/human_check.js"></script>
+</head>
+<body>
+    <form action="BianGeng" method="post" enctype="multipart/form-data">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案变更 </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="确认变更" class="BUTTON_STYLE1" />
+                    <input type="reset" value="清除" class="BUTTON_STYLE1">
+                    <input type="button" value="返回" class="BUTTON_STYLE1"
+                           onclick="history.back()">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=3 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            @foreach (human_file item in Model)
+            {
+                <tr>
+
+                    <td class="TD_STYLE1" width="10%">
+                        档案编号
+                        <input type="hidden" name="huf_idhaha" value="@item.huf_id" />
+                    </td>
+                    <td colspan="6" class="TD_STYLE2">
+                        @item.human_id
+                    </td>
+                    <td rowspan="6" width="13%" style="text-align: center;">
+                        <img src="~/TuPian/@item.human_picture" style="width:120px;height:150px;" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1" width="10%">
+                        I级机构
+                    </td>
+                    <td width="13%" class="TD_STYLE2">
+                        @item.first_kind_name
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        II级机构
+                    </td>
+                    <td width="13%" class="TD_STYLE2">
+                        @item.second_kind_name
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        III级机构
+                    </td>
+                    <td class="TD_STYLE2" colspan="2" width="2%">@item.third_kind_name</td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        @item.human_major_kind_name
+                    </td>
+                    <td class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @item.hunma_major_name
+                    </td>
+                    <td class="TD_STYLE1">
+                        职称
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        <select class="SELECT_STYLE1">
+                            <option>@item.human_pro_designation</option>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        姓名
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" id="humanName" name="humanFile.humanName" value="@item.human_name"
+                               class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        性别
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select class="SELECT_STYLE1">
+                            <option>@item.human_sex</option>
+
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        EMAIL
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanEmail" value="@item.human_email"
+                               class="INPUT_STYLE2" id="humanEmail">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        电话
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanTelephone" value="@item.human_telephone"
+                               class="INPUT_STYLE2" id="humanTelephone">
+                    </td>
+                    <td class="TD_STYLE1">
+                        QQ
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanQq" value="@item.human_qq"
+                               class="INPUT_STYLE2" id="humanQq">
+                    </td>
+                    <td class="TD_STYLE1">
+                        手机
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanMobilephone" id="humanMobilephone"
+                               value="@item.human_mobilephone" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        住址
+                    </td>
+                    <td colspan="3" class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanAddress" value="@item.human_address"
+                               class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        邮编
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanPostcode" value="@item.human_postcode"
+                               class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        国籍
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_nationality" class="SELECT_STYLE1">
+                            <option>@item.human_nationality</option>
+                            <option value="中国">中国</option>
+                            <option value="美国">美国</option>
+                            <option value="日本">日本</option>
+                            <option value="澳大利亚">澳大利亚</option>
+                            <option value="荷兰">荷兰</option>
+                            <option value="新西兰">新西兰</option>
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        出生地
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanBirthplace" value="@item.human_birthplace"
+                               class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        生日
+                    </td>
+                    <td width="13%" class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanBirthday" readonly="readonly"
+                               value="@item.human_birthday" class="INPUT_STYLE2" id="birthday">
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        民族
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_race" class="SELECT_STYLE1">
+                            <option>@item.human_race</option>
+                            <option value="汉族">汉族</option>
+                            <option value="回族">回族</option>
+                            <option value="壮族">壮族</option>
+                            <option value="维吾尔族">维吾尔族</option>
+                            <option value="其他名族">其他名族</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        宗教信仰
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_religion" class="SELECT_STYLE1">
+                            <option>@item.human_religion</option>
+                            <option value="佛教">佛教</option>
+                            <option value="基督教">基督教</option>
+                            <option value="伊斯兰教">伊斯兰教</option>
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        政治面貌
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_party" class="SELECT_STYLE1">
+                            <option>@item.human_party</option>
+                            <option value="党员">党员</option>
+                            <option value="中央政府">中央政府</option>
+                            <option value="群众">群众</option>
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        身份证号码
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanIdCard" id="humanIdCard"
+                               value="@item.human_id_card" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        社会保障号码
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanSocietySecurityId" value="@item.human_society_security_id"
+                               class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        年龄
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanAge" value="@item.human_age"
+                               class="INPUT_STYLE2" id="humanAge">
+                    </td>
+                    <td class="TD_STYLE1">
+                        学历
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_educated_degree" class="SELECT_STYLE1">
+                            <option>@item.human_educated_degree</option>
+                            <option value="研究生">研究生</option>
+                            <option value="博士">博士</option>
+                            <option value="硕士">硕士</option>
+                            <option value="博士硕士">博士硕士</option>
+                            <option value="本科">本科</option>
+                            <option value="大专">大专</option>
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        教育年限
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_educated_years" class="SELECT_STYLE1">
+                            <option>@item.human_educated_years</option>
+                            <option value="12">12</option>
+                            <option value="16">16</option>
+                            <option value="18">18</option>
+                            <option value="20">20</option>
+                            <option value="22">22</option>
+                            <option value="24">24</option>
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        学历专业
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_educated_major" class="SELECT_STYLE1">
+                            <option>@item.human_educated_major</option>
+                            <option value="物理工程">物理工程</option>
+                            <option value="生物工程">生物工程</option>
+                            <option value="化学工程">化学工程</option>
+                            <option value="会计学">会计学</option>
+                            <option value="计算机">计算机</option>
+                            <option value="计算机">经商学</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        薪酬标准
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="humanFile.salaryStandardId" class="SELECT_STYLE1">
+                            <option>@item.salary_standard_name</option>
+
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        开户行
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanBank" value="@item.human_bank"
+                               class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        帐号
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="humanFile.humanAccount"
+                               value="@item.human_account" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        复核人
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="changer" class="INPUT_STYLE2">
+                            @foreach (var uu in ViewBag.Users)
+                            {
+                                if (uu.u_true_name == item.checker)
+                                {
+                                    <option selected="selected" value="@item.checker">@item.checker</option>
+                                }
+                                else
+                                {
+                                    <option value="@uu.u_true_name">@uu.u_true_name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        复核时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="check_time"
+                               id="create_time" readonly="readonly"
+                               class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        特长
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_speciality" class="SELECT_STYLE1">
+                            <option>@item.human_speciality</option>
+                            <option value="数据库">数据库</option>
+                            <option value="java">java</option>
+                            <option value=".net">.net</option>
+                            <option value="c++">c++</option>
+                            <option value="c语言">c语言</option>
+                            <option value="量子分类">量子分类</option>
+                            <option value="动力分层">动力分层</option>
+                            <option value="高级心算">高级心算</option>
+                            <option value="生物肱骨专研">生物肱骨专研</option>
+                            <option value="汞元素提炼">汞元素提炼</option>
+                            <option value="汞元素提炼">人际交往</option>
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        爱好
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="human_hobby" class="SELECT_STYLE1">
+                            <option>@item.human_hobby</option>
+                            <option value="">--请选择--</option>
+                            <option value="游泳">游泳</option>
+                            <option value="篮球">篮球</option>
+                            <option value="足球">足球</option>
+                            <option value="舞蹈">舞蹈</option>
+                            <option value="电竞">电竞</option>
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        &nbsp;
+                    </td>
+                    <td class="TD_STYLE2">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        档案附件
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <a href="javascript:winopenm('/TuPian2/@item.attachment_name')">@item.attachment_name</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        个人履历
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <textarea name="human_histroy_records" rows="4"
+                                  class="TEXTAREA_STYLE1">@item.human_histroy_records
+                            </textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            家庭关系信息
+                        </td>
+                        <td colspan="7" class="TD_STYLE2">
+                            <textarea name="human_family_membership" rows="4"
+                                      class="TEXTAREA_STYLE1">@item.human_family_membership
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="TD_STYLE1">
+                                备注
+                            </td>
+                            <td colspan="7" class="TD_STYLE2">
+                                <textarea name="remark" rows="4" class="TEXTAREA_STYLE1">@item.remark</textarea>
+                            </td>
+                        </tr>
+            }
+        </table>
+    </form>
+</body>
+</html>

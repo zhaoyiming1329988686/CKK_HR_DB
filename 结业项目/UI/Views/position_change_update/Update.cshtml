@@ -1,0 +1,211 @@
+﻿@model List<engage_major_release>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>职业发布变更修改</title>
+
+    <link href="~/Scripts/css/table.css" rel="stylesheet" />
+    <link href="~/Scripts/css/cwcalendar.css" rel="stylesheet" />
+    <script src="~/Scripts/javascript/comm/comm.js"></script>
+    <script src="~/Scripts/javascript/comm/list.js"></script>
+    <script src="~/Scripts/javascript/calendar-ch.js"></script>
+    <script src="~/Scripts/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Scripts/javascript/locate.js"></script>
+    <script src="~/Scripts/javascript/select.js"></script>
+    <script src="~/Scripts/javascript/comm/time.js"></script>
+
+    <script type="text/javascript">
+ 			window.onload=check;
+		function tick() {
+			var now = new Date();
+			var hours, minutes, seconds, noon;
+			var intHours, intMinutes, intSeconds;
+			intHours = now.getHours();
+			intMinutes = now.getMinutes();
+			intSeconds = now.getSeconds();
+			if (intHours < 24) {
+				hours = intHours+":";
+				noon = "A.M.";
+			} else {
+				intHours = intHours - 24;
+				hours = intHours + ":";
+				noon = "P.M.";
+			}
+			if (intMinutes < 10) {
+				minutes = "0"+intMinutes+":";
+			} else {
+				minutes = intMinutes+":";
+			}
+			if (intSeconds < 10) {
+				seconds = "0"+intSeconds+" ";
+			} else {
+				seconds = intSeconds+" ";
+			}
+			timeString = hours+minutes+seconds;
+			var now = new Date();
+		  	document.getElementById("nowTime").value=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+timeString;
+			window.setTimeout("tick();", 1000);
+		}
+
+		//load事件
+		function check(){
+			//获得系统当前时间的方法
+		  	tick();
+		}
+    </script>
+
+    <script type="text/javascript">
+ 	   function mySubmit(){
+  	document.humanfileForm.submit();
+ 	}
+
+
+    </script>
+</head>
+<body>
+    <form id="recruitAction!applyPosition" name="humanfileForm" action="Update2" method="post">
+
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--招聘管理--职位发布管理--职位发布变更 </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="重新提交" class="BUTTON_STYLE1"
+                           onclick="mySubmit()">
+                    <input type="reset" value="清除" class="BUTTON_STYLE1">
+                </td>
+            </tr>
+        </table>
+
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+@foreach (engage_major_release item in Model)
+{
+            <tr>
+                <td class="TD_STYLE1" width="11%">
+                    I级机构
+                </td>
+                <td width="14%" class="TD_STYLE2">
+                    <input type="hidden" name="emajorRelease.firstKindName" value="@item.first_kind_name" />
+                    <input type="hidden" name="emajorRelease.firstKindId" value="@item.first_kind_id" />
+                    @item.first_kind_name
+                    <input type="hidden" name="mre_idhaha" value="@item.mre_id" />
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    II级机构
+                </td>
+                <td width="14%" class="TD_STYLE2">
+                    <input type="hidden" name="emajorRelease.secondKindName" value="@item.second_kind_name" />
+                    <input type="hidden" name="emajorRelease.secondKindId" value="@item.second_kind_id" />
+                    @item.second_kind_name
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    III级机构
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="hidden" name="emajorRelease.thirdKindName" value="@item.third_kind_name" />
+                    <input type="hidden" name="emajorRelease.thirdKindId" value="@item.third_kind_id" />
+                    @item.third_kind_name
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    招聘类型
+                </td>
+                <td class="TD_STYLE2" colspan="2">
+
+                    <select name="emajorRelease.engageType" id="engageType" class="SELECT_STYLE1">
+
+                        <option value="校园招聘" selected>校园招聘</option>
+
+                        <option value="社会招聘" selected>社会招聘</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    职位分类
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="hidden" name="emajorRelease.majorKindName" value="@item.major_kind_name" />
+                    <input type="hidden" name="emajorRelease.majorKindId" value="@item.major_kind_id" />
+                    @item.major_kind_name
+                </td>
+                <td class="TD_STYLE1">
+                    职位名称
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="hidden" name="emajorRelease.majorName" value="@item.major_name" />
+                    <input type="hidden" name="emajorRelease.majorId" value="@item.major_id" />
+                   @item.major_name
+                </td>
+                <td class="TD_STYLE1">
+                    招聘人数
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="emajorRelease.humanAmount" value="@item.human_amount" class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    截止日期
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="emajorRelease.deadline"
+                           class="INPUT_STYLE2" onclick="aa('emajorRelease.deadline')" value="@item.deadline">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    变更人
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="emajorRelease.changer" value="@item.changer" class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    变更时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="emajorRelease.changeTime"
+                           value="@item.change_time" id="nowTime"
+                           class="INPUT_STYLE2">
+                </td>
+
+                <td>&nbsp; </td>
+                <td>&nbsp; </td>
+                <td>&nbsp; </td>
+                <td>&nbsp; </td>
+
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    职位描述
+                </td>
+                <td class="TD_STYLE2" colspan="8">
+                    <textarea name="emajorRelease.majorDescribe" rows="4" cols="100%" class="TEXTAREA_STYLE1">@item.major_describe</textarea>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    招聘要求
+                </td>
+                <td class="TD_STYLE2" colspan="8">
+                    <textarea name="emajorRelease.engageRequired" rows="4" cols="100%" class="TEXTAREA_STYLE1">@item.engage_required</textarea>
+                </td>
+
+            </tr>
+}
+
+        </table>
+    </form>
+</body>
+</html>

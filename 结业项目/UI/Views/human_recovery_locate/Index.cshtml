@@ -1,0 +1,195 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>恢复档案</title>
+    <link href="~/Scripts/css/table.css" rel="stylesheet" />
+    <link href="~/Scripts/css/cwcalendar.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/javascript/comm/comm.js"></script>
+    <script src="~/Scripts/javascript/comm/list.js"></script>
+    <script src="~/Scripts/javascript/calendar-ch.js"></script>
+    <script src="~/Scripts/javascript/locate.js"></script>
+    <script src="~/Scripts/javascript/select.js"></script>
+    <script src="~/Scripts/javascript/time.js"></script>
+    <script src="~/Scripts/javascript/jquery.messager.js"></script>
+    <script src="~/Scripts/javascript/jquery-1.7.2.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            //二级下拉框显示
+            $(document).on("change", "#firstKind", function () {
+
+                $("#secondKind option").remove();
+                $.ajax({
+
+                    url: "/human_recovery_locate/chaxun2",
+                    type: "post",
+                    data: "&firstKindId=" + $("#firstKind").val(),
+                    success: function (msg) {
+
+                        var data = eval("(" + msg + ")");
+                        for (var i = 0; i < data.length; i++) {
+                            $("#secondKind").append("<option value='" + data[i]["second_kind_id"] + "'>" + data[i]["second_kind_name"] + "</option>");
+                        }
+                    }
+
+                });
+            })
+
+            //三级下拉框显示
+            $(document).on("change", "#secondKind", function () {
+
+                $("#thirdKind option").remove();
+                $.ajax({
+                    url: "/human_recovery_locate/chaxun3",
+                    type: "post",
+                    data: "&secondKindId=" + $("#secondKind").val(),
+                    success: function (msg) {
+
+                        var data = eval("(" + msg + ")");
+                        for (var i = 0; i < data.length; i++) {
+                            $("#thirdKind").append("<option value='" + data[i]["third_kind_id"] + "'>" + data[i]["third_kind_name"] + "</option>");
+                        }
+                    }
+
+                });
+            })
+
+            //职位名称显示（点击职位分类）
+            $(document).on("change", "#majorKind", function () {
+
+                $("#majorName option").remove();
+                $.ajax({
+
+                    url: "/human_recovery_locate/chaxun4",
+                    type: "post",
+                    data: "&majorKindId=" + $("#majorKind").val(),
+                    success: function (msg) {
+
+                        var data = eval("(" + msg + ")");
+                        for (var i = 0; i < data.length; i++) {
+                            $("#majorName").append("<option value='" + data[i]["major_id"] + "'>" + data[i]["major_name"] + "</option>");
+                        }
+                    }
+
+                });
+            })
+
+
+
+        });
+
+
+
+    </script>
+</head>
+<body>
+    <form method="post" action="IndexSelect">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案恢复</font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="查询" class="BUTTON_STYLE1" />
+                    <input type="button" value="搜索" class="BUTTON_STYLE1"
+                           onclick="location.href='recovery_keywords.html'">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr class="TR_STYLE1">
+                <td width="16%" class="TD_STYLE1">
+                    请选择员工所在I级机构
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    <select name="humanFile.firstKindId" size="5" id="firstKind"
+                            class="SELECT_STYLE2">
+                        @foreach (var item in ViewBag.yiji)
+                        {
+                            <option value="@item.first_kind_id">@item.first_kind_name</option>
+                        }
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    请选择员工所在II级机构
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    <select name="humanFile.secondKindId" size="5" id="secondKind"
+                            class="SELECT_STYLE2"></select>
+                </td>
+            </tr>
+
+
+            <tr class="TR_STYLE1">
+                <td width="16%" class="TD_STYLE1">
+                    请选择员工所在III级机构
+                </td>
+                <td width="84%" class="TD_STYLE2">
+
+                    <select name="humanFile.thirdKindId" class="SELECT_STYLE2" size="5" id="thirdKind">
+                    </select>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    请选择职位分类
+                </td>
+                <td width="84%" class="TD_STYLE2">
+
+                    <select name="humanFile.humanMajorKindId" size="5" id="majorKind"
+                            class="SELECT_STYLE2">
+                        @foreach (var item in ViewBag.fenlei)
+                        {
+                            <option value="@item.major_kind_id">@item.major_kind_name</option>
+                        }
+                    </select>
+
+
+                </td>
+            </tr>
+            <tr class="TR_STYLE1">
+                <td width="16%" class="TD_STYLE1">
+                    请选择职位名称
+                </td>
+                <td width="84%" class="TD_STYLE2">
+
+                    <select name="humanFile.humanMajorId" size="5" class="SELECT_STYLE2" id="majorName">
+                    </select>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    请输入建档时间
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    <input type="text" name="utilBean.startDate" readonly
+                           style="width: 14%" class="INPUT_STYLE2" id="date_start">
+                    至
+                    <input type="text" name="utilBean.endDate" readonly="readonly"
+                           style="width: 14%" class="INPUT_STYLE2" id="date_end">
+                    <input type="hidden" name="utilBean.datePropertyName" value="registTime" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

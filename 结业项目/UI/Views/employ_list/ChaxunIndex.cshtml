@@ -1,0 +1,485 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ChaxunIndex</title>
+    <link href="~/Scripts/css/table.css" rel="stylesheet" />
+    <link href="~/Scripts/css/cwcalendar.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Scripts/javascript/comm/comm.js"></script>
+    <script src="~/Scripts/javascript/comm/list.js"></script>
+    <script src="~/Scripts/javascript/calendar-ch.js"></script>
+    <script src="~/Scripts/javascript/locate.js"></script>
+    <script src="~/Scripts/javascript/select.js"></script>
+    <script src="~/Scripts/javascript/time.js"></script>
+    <script type="text/javascript">
+
+
+		function tick() {
+			var now = new Date();
+			var hours, minutes, seconds, noon;
+			var intHours, intMinutes, intSeconds;
+			intHours = now.getHours();
+			intMinutes = now.getMinutes();
+			intSeconds = now.getSeconds();
+			if (intHours < 24) {
+				hours = intHours+":";
+				noon = "A.M.";
+			} else {
+				intHours = intHours - 24;
+				hours = intHours + ":";
+				noon = "P.M.";
+			}
+			if (intMinutes < 10) {
+				minutes = "0"+intMinutes+":";
+			} else {
+				minutes = intMinutes+":";
+			}
+			if (intSeconds < 10) {
+				seconds = "0"+intSeconds+" ";
+			} else {
+				seconds = intSeconds+" ";
+			}
+			timeString = hours+minutes+seconds;
+			var now = new Date();
+
+		  	//document.getElementById("nowTime").value = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+timeString;
+			//window.setTimeout("tick();", 100);
+		}
+
+		//load事件
+		function check(){
+			//获得系统当前时间的方法
+		  	tick();
+		}
+
+    </script>
+</head>
+<body onload="check()">
+    <form id="employAction" name="employAction" action="employAction.do?methodName=updatesper" method="post" enctype="multipart/form-data">
+        <table class="wwFormTable">
+          
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--录用管理--录用查询--详细信息  </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="reset" value="返回" onclick="history.back();" class="BUTTON_STYLE1">
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                @foreach (engage_resume item in ViewBag.listJianli)
+            {
+                    <tr>
+                        <td class="TD_STYLE1" width="10%">
+                            职位分类
+                            <input type="hidden" name="res_idhaha" value="@item.res_id" />@*ID*@
+
+                        </td>
+                        <td width="10%" class="TD_STYLE2">
+                            <input type="hidden" name="human_major_kind_id" value="@item.human_major_kind_id" />
+                            <input type="text" name="human_major_kind_name" value="@item.human_major_kind_name" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1" width="10%">
+                            职位名称
+                        </td>
+
+                        <td width="15%" class="TD_STYLE2">
+                            <input type="hidden" name="human_major_id" value="@item.human_major_id" />
+                            <input type="text" name="human_major_name" value="@item.human_major_name" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td width="11%" class="TD_STYLE1">
+                            招聘类型
+                        </td>
+                        <td width="20%" class="TD_STYLE2" colspan="2">
+                            <input type="text" name="engage_type" value="@item.engage_type" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td rowspan="6">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            姓名
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text"
+                                   value="@item.human_name"
+                                   name="human_name" class="INPUT_STYLE2" />
+                        </td>
+                        <td class="TD_STYLE1">
+                            性别
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_sex" value="@item.human_sex" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+
+                        <td class="TD_STYLE1">
+                            EMAIL
+                        </td>
+                        <td colspan="2" class="TD_STYLE2">
+                            <input type="text" name="human_email"
+                                   value="@item.human_email"
+                                   class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            电话
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_telephone"
+                                   value="@item.human_telephone"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            家庭电话
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_homephone"
+                                   value="@item.human_homephone"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            手机
+                        </td>
+                        <td colspan="2" class="TD_STYLE2">
+                            <input type="text" name="human_mobilephone"
+                                   value="@item.human_mobilephone"
+                                   class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            住址
+                        </td>
+                        <td colspan="3" class="TD_STYLE2">
+                            <input type="text" name="human_address"
+                                   value="@item.human_address"
+                                   class="INPUT_STYLE2">
+                        </td>
+
+                        <td class="TD_STYLE1">
+                            邮编
+                        </td>
+                        <td colspan="2" class="TD_STYLE2">
+                            <input type="text" name="human_postcode"
+                                   value="@item.human_postcode"
+                                   class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="TD_STYLE1">
+                            国籍
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_nationality" value="@item.human_nationality" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            出生地
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_birthplace"
+                                   value="@item.human_birthplace"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            生日
+                        </td>
+                        <td width="13%" colspan="2" class="TD_STYLE2">
+                            <input type="text" name="human_birthday"
+                                   value="@item.human_birthday"
+                                   class="INPUT_STYLE2" id="date_start">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td width="11%" class="TD_STYLE1">
+                            民族
+                        </td>
+
+                        <td class="TD_STYLE2" width="14%">
+                            <input type="text" name="human_race" value="@item.human_race" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            宗教信仰
+                        </td>
+
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_religion" value="@item.human_religion" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            政治面貌
+                        </td>
+
+                        <td class="TD_STYLE2" colspan="2">
+                            <input type="text" name="human_party" value="@item.human_party" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            身份证号码
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_idcard"
+                                   value="@item.human_idcard"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            年龄
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_age"
+                                   value="@item.human_age"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            毕业院校
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_college"
+                                   value="@item.human_college"
+                                   class="INPUT_STYLE2" />
+                        </td>
+
+                        <td class="TD_STYLE1">
+                            学历
+                        </td>
+
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_educated_degree" value="@item.human_educated_degree" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            教育年限
+                        </td>
+
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_educated_years" value="@item.human_educated_years" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            学历专业
+                        </td>
+
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_educated_major" value="@item.human_educated_major" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            薪酬要求
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="demand_salary_standard" value="@item.demand_salary_standard" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            注册时间
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="hidden" value="@item.pass_regist_time" name="regist_time">@item.pass_regist_time
+                        </td>
+
+                    </tr>
+                    <tr>
+
+                        <td class="TD_STYLE1">
+                            特长
+                        </td>
+
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_specility" value="@item.human_specility" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            爱好
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="human_hobby" value="@item.human_hobby" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            推荐人
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="pass_checker"
+                                   value="@item.pass_checker"
+                                   class="INPUT_STYLE2" />
+
+                        </td>
+                        <td class="TD_STYLE1">
+                            推荐时间
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="pass_check_time" value="@item.pass_check_time" readonly="readonly" class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            个人履历
+                        </td>
+                        <td colspan="7" class="TD_STYLE2">
+                            <textarea name="human_history_records" rows="4" readonly="readonly"
+                                      class="TEXTAREA_STYLE1">@item.human_history_records
+                                </textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="TD_STYLE1">
+                                备注
+                            </td>
+                            <td colspan="7" class="TD_STYLE2">
+                                <textarea name="remark" rows="4" readonly="readonly"
+                                          class="TEXTAREA_STYLE1">@item.remark
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="TD_STYLE1">
+                                    筛选推荐意见
+                                </td>
+                                <td class="TD_STYLE2" colspan="7">
+                                    <textarea name="recomandation" rows="4" class="TEXTAREA_STYLE1" readonly="readonly">@item.recomandation</textarea>
+                                </td>
+                            </tr>
+                }
+
+                @foreach (engage_interview item in ViewBag.listMianshi)
+            {
+                    <tr>
+                        <td class="TD_STYLE1">
+                            面试次数
+                            <input type="hidden" name="ein_idhaha" value="@item.ein_id" class="INPUT_STYLE2" />@*面试id*@
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="interview_amount" value="@item.interview_amount" class="INPUT_STYLE2" readonly="readonly" />
+                        </td>
+                        <td class="TD_STYLE1">
+                            形象评价
+                        </td>
+                        <td class="TD_STYLE2">
+
+                            <input type="text" name="image_degree" value="@item.image_degree" class="INPUT_STYLE2" readonly="readonly" />
+
+                        </td>
+                        <td class="TD_STYLE1">
+                            口才评价
+                        </td>
+                        <td class="TD_STYLE2">
+
+                            <input type="text" name="native_language_degree" value="@item.native_language_degree" class="INPUT_STYLE2" readonly="readonly" />
+
+                        </td>
+                        <td class="TD_STYLE1">
+                            外语口语能力
+                        </td>
+                        <td class="TD_STYLE1">
+
+                            <input type="text" name="foreign_language_degree" value="@item.foreign_language_degree" class="INPUT_STYLE2" readonly="readonly" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            应变能力
+                        </td>
+                        <td class="TD_STYLE2">
+
+                            <input type="text" name="response_speed_degree" value="@item.response_speed_degree" class="INPUT_STYLE2" readonly="readonly" />
+
+                        </td>
+                        <td class="TD_STYLE1">
+                            EQ
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="EQ_degree" value="@item.EQ_degree" class="INPUT_STYLE2" readonly="readonly" />
+
+                        </td>
+                        <td class="TD_STYLE1">
+                            IQ
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="IQ_degree" value="@item.IQ_degree" class="INPUT_STYLE2" readonly="readonly" />
+
+                        </td>
+                        <td class="TD_STYLE1">
+                            综合素质
+                        </td>
+                        <td class="TD_STYLE1">
+                            <input type="text" name="multi_quality_degree" value="@item.multi_quality_degree" class="INPUT_STYLE2" readonly="readonly" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            面试人
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="register" value="@item.register" class="INPUT_STYLE2" />
+                        </td>
+                        <td class="TD_STYLE1">
+                            面试时间
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="registe_time" value="@item.registe_time" class="INPUT_STYLE2" />
+                        </td>
+                        <td class="TD_STYLE1">
+                            筛选人
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="checker" value="@item.checker" class="INPUT_STYLE2" />
+
+                        </td>
+                        <td class="TD_STYLE1">
+                            筛选时间
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="check_time"
+                                   id="nowTime" readonly="readonly"
+                                   class="INPUT_STYLE2" value="@item.check_time">
+                        </td>
+                    </tr>
+                }
+                @foreach (engage_resume item in ViewBag.jianlilushenheyijian)
+            {
+                    <tr>
+                        <td class="TD_STYLE1">
+                            录用申请审核意见
+                        </td>
+
+                        <td class="TD_STYLE2" colspan="7">
+                            <textarea name="passCheckcommenthaha" class="TEXTAREA_STYLE1"
+                                      rows="4" readonly="readonly" id="passCheckcomment">@item.pass_checkComment
+                                </textarea>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="TD_STYLE1">
+                                录用申请审批审核意见
+                            </td>
+                            <td class="TD_STYLE2" colspan="7">
+                                <textarea name="pass_passComment" id="passPasscomment" class="TEXTAREA_STYLE1" readonly="readonly"
+                                          rows="4">@item.pass_passComment</textarea>
+                            </td>
+                        </tr>
+                }
+
+            </table>
+        </table>
+    </form>
+
+</body>
+</html>

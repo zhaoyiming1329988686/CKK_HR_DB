@@ -343,7 +343,7 @@
           <Property Name="human_educated_years" Type="smallint" />
           <Property Name="human_educated_major" Type="varchar" MaxLength="60" />
           <Property Name="human_society_security_id" Type="varchar" MaxLength="30" />
-          <Property Name="human_id_card" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="human_id_card" Type="varchar" MaxLength="20" />
           <Property Name="remark" Type="text" />
           <Property Name="salary_standard_id" Type="varchar" MaxLength="30" />
           <Property Name="salary_standard_name" Type="varchar" MaxLength="60" />
@@ -948,7 +948,7 @@
           <Property Name="human_educated_years" Type="Int16" />
           <Property Name="human_educated_major" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="human_society_security_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="human_id_card" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="human_id_card" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
